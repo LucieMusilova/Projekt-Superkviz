@@ -16,7 +16,6 @@ const Zebricek = () => {
     fetchData();
   }, []);
 
-  console.log(person)
 
   return (
     <div className="topscore">

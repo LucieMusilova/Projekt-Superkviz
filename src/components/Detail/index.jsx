@@ -6,7 +6,7 @@ import './style.css';
 const Detail = () => {
   const {id} = useParams();
   const [item, setItem] = useState([]);
-  let i = 0;
+  const [i, setI] = useState(0);
 
   const fetchData = () => {
     fetch(`https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quiz/${id}.json`)
