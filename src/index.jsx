@@ -10,6 +10,7 @@ import Footer from './components/Footer'
 import Kvizy from './components/Kvizy'
 import Zebricek from './components/Zebricek'
 import Detail from './components/Detail'
+import Vysledek from './components/Vysledek'
 
 const App = () => (
   <BrowserRouter>
@@ -20,6 +21,7 @@ const App = () => (
         <Route path="/" element={<Main />} />
         <Route path="/kvizy" element={<Kvizy />} />
         <Route path="/kvizy/:id" element={<Detail />} />
+        <Route path="/kvizy/vysledek" element={<Vysledek />} />
         <Route path="/zebricek" element={<Zebricek />} />
         
       </Routes>
