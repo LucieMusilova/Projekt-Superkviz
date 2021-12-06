@@ -49,6 +49,11 @@
 	color: var(--cervena);
 }
 
+.result__answer--incorrect {
+	display:none;
+}
+
+
 .results__count {
 	margin-top: 45px;
 	font-family: 'Bangers', cursive;

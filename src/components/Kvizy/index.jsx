@@ -27,7 +27,7 @@ const Kvizy = () => {
           <div className="quiz-item__content">
             <h2 className="quiz-item__title">{q.title}</h2>
             <p className="quiz-item__questions">{q.questions} otázek</p>
-            <Link to={`/kvizy/${q.id}`} className="quiz-item__link">Spustit kvíz</Link>
+            <Link to={`/kvizy/${q.id}`} className="quiz-item__link" onClick={() => {window.location.href=`/kvizy/${q.id}`}}>Spustit kvíz</Link>
           </div>
         </div>
       )}

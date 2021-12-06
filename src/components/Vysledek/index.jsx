@@ -1,62 +1,48 @@
 import React from 'react';
 import './style.css';
+import correctImg from "./correct.svg";
+import incorrectImg from "./incorrect.svg";
 
-const Vysledek = () => {
+const Vysledek = ({item, correct, choice}) => {
   
 
   return (
+    <>
+        <div className="evaluation">
 
-		<div className="evaluation">
+          <h2 className="evaluation__title">Tvoje hodnocení</h2>
 
-			<h2 className="evaluation__title">Tvoje hodnocení</h2>
+          <div className="evaluation__content">
 
-			<div className="evaluation__content">
+            <div className="results">
 
-				<div className="results">
-
-					<div className="result">
-						<img className="result__icon" src="images/incorrect.svg" alt="špatně"/>
-
-						<div className="result__content">
-							<h3 className="result__title">1. Co je ikonická hračka z 80. let?</h3>
-							<p className="result__answer">Tvoje odpověď: Kočičák</p>
-							<p className="result__answer result__answer--correct">Správná odpověď: Mončičák</p>
-						</div>
-					</div>
-
-
-					<div className="result">
-						<img className="result__icon" src="images/correct.svg" alt="správně"/>
-
-						<div className="result__content">
-							<h3 className="result__title">2. Jaké je Luďkovo nejoblíbenější ovoce?</h3>
-							<p className="result__answer">Tvoje odpověď: Jahůdka</p>
-						</div>
-					</div>
+            {item?.questions.map((q, index) =>
+              <div className="result" key={index}>
+                <img className="result__icon" src={q.answers[q.correctAnswer] === choice[q.id - 1] ? correctImg : incorrectImg} alt={q.answers[q.correctAnswer] === choice[q.id - 1] ? "dobře" : "špatně"}/>
+       
+                <div className="result__content">
+                  <h3 className="result__title">{q.title}</h3>
+                  <p className="result__answer">Tvoje odpověď: {choice[q.id - 1]}</p>
+                  <p className={q.answers[q.correctAnswer] === choice[q.id - 1] ? "result__answer result__answer--incorrect" : "result__answer result__answer--correct"}>Správná odpověď: {q.answers[q.correctAnswer]}</p>
+                </div>
+              </div>
+            )}
 
 
-					<div className="result">
-						<img className="result__icon" src="images/correct.svg" alt="správně"/>
+              <div className="results__count">
+                Správně máš {correct} ze {item?.questions.length} otázek.
+              </div>
 
-						<div className="result__content">
-							<h3 className="result__title">3. Zrcadlo, kdo je na světě nejkrásnější?</h3>
-							<p className="result__answer">Tvoje odpověď: Já, já jsem nejkrásnější!</p>
-						</div>
-					</div>
+            </div>
 
-					<div className="results__count">
-						Správně máš 2 ze 3 otázek.
-					</div>
+            <div className="success-rate">
+              {Math.round(correct/item?.questions.length * 100)} %
+            </div>
 
-				</div>
+          </div>
 
-				<div className="success-rate">
-					100 %
-				</div>
-
-			</div>
-
-		</div>
+        </div> 
+    </>
 
   )
 }

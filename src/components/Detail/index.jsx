@@ -1,36 +1,29 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { useParams, Link} from 'react-router-dom';
 
 import './style.css';
 
-const Detail = () => {
+const Detail = ({getData, item, getChoice, i}) => {
   const {id} = useParams();
-  const [item, setItem] = useState(null);
-  const [i, setI] = useState(0);
-  const [correct, setCorrect] = useState(0);
-  const [choice, setChoice] = useState([]);
 
   const fetchData = () => {
     fetch(`https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quiz/${id}.json`)
     .then(response => response.json())
     .then(data => {
-      setItem(data);
+      getData(data);
     })
   };
 
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(item)
+
 
   const handleClick = (choosed) => {
-    item.questions[i].correctAnswer === choosed ? setCorrect(correct + 1) : setCorrect(correct);
-    setChoice(choice => choice.concat(item.questions[i].answers[choosed]));
-    setI(i+1);
+    getChoice(choosed)
   };
   
-  console.log(correct);
-  console.log(choice)
+
 
   return (
     <>
