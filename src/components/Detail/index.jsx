@@ -8,6 +8,7 @@ const Detail = () => {
   const [item, setItem] = useState(null);
   const [i, setI] = useState(0);
   const [correct, setCorrect] = useState(0);
+  const [choice, setChoice] = useState([]);
 
   const fetchData = () => {
     fetch(`https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quiz/${id}.json`)
@@ -23,14 +24,17 @@ const Detail = () => {
   console.log(item)
 
   const handleClick = (choosed) => {
-    setI(i+1);
     item.questions[i].correctAnswer === choosed ? setCorrect(correct + 1) : setCorrect(correct);
+    setChoice(choice => choice.concat(item.questions[i].answers[choosed]));
+    setI(i+1);
   };
-  console.log(correct)
+  
+  console.log(correct);
+  console.log(choice)
 
   return (
     <>
-     {(item !== null || undefined)  ? 
+     {(item !== null || undefined) ? 
       <div className="question">
     
         <p className="question__number">Otázka {i + 1} / {item.questions.length}</p>
