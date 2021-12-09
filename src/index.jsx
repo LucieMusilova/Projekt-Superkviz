@@ -30,7 +30,7 @@ const App = () => {
     setChoice(choice => choice.concat(item.questions[i].answers[choosed]));
     setI(i+1);
   }
-
+  console.log(item);
   console.log(correct);
   console.log(choice);
 
